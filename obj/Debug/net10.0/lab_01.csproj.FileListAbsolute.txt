@@ -1,0 +1,14 @@
+/Users/artemvas/Documents/study/development/Csharp/lab_01/bin/Debug/net10.0/lab_01
+/Users/artemvas/Documents/study/development/Csharp/lab_01/bin/Debug/net10.0/lab_01.deps.json
+/Users/artemvas/Documents/study/development/Csharp/lab_01/bin/Debug/net10.0/lab_01.runtimeconfig.json
+/Users/artemvas/Documents/study/development/Csharp/lab_01/bin/Debug/net10.0/lab_01.dll
+/Users/artemvas/Documents/study/development/Csharp/lab_01/bin/Debug/net10.0/lab_01.pdb
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/lab_01.GeneratedMSBuildEditorConfig.editorconfig
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/lab_01.AssemblyInfoInputs.cache
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/lab_01.AssemblyInfo.cs
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/lab_01.csproj.CoreCompileInputs.cache
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/lab_01.dll
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/refint/lab_01.dll
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/lab_01.pdb
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/lab_01.genruntimeconfig.cache
+/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/Debug/net10.0/ref/lab_01.dll
