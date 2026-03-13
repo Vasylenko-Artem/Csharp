@@ -28,6 +28,15 @@ namespace tasks
 				}
 			}
 
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = 0; j < arr[i].Length; j++)
+				{
+					Console.Write(arr[i][j] + " ");
+				}
+				Console.WriteLine();
+			}
+
 			// знаходимо максимальну кількість стовпців
 			int maxCols = 0;
 			for (int i = 0; i < n; i++)
