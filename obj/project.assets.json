@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/artemvas/Documents/study/development/Csharp/lab_01/lab_01.csproj",
+      "projectUniqueName": "/Users/artemvas/Documents/study/development/Csharp/lab_01.csproj",
       "projectName": "lab_01",
-      "projectPath": "/Users/artemvas/Documents/study/development/Csharp/lab_01/lab_01.csproj",
+      "projectPath": "/Users/artemvas/Documents/study/development/Csharp/lab_01.csproj",
       "packagesPath": "/Users/artemvas/.nuget/packages/",
-      "outputPath": "/Users/artemvas/Documents/study/development/Csharp/lab_01/obj/",
+      "outputPath": "/Users/artemvas/Documents/study/development/Csharp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/artemvas/.nuget/NuGet/NuGet.Config"
