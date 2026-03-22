@@ -51,6 +51,30 @@ namespace tasks
 			{
 				p.Print();
 			}
+
+			Point pTest = new Point(1, 2, 3);
+
+			Console.WriteLine(pTest[0]);
+			Console.WriteLine(pTest[1]);
+			Console.WriteLine(pTest[2]);
+
+			pTest++;
+			Console.WriteLine((string)pTest);
+
+			pTest--;
+			Console.WriteLine((string)pTest);
+
+			if (pTest)
+			{
+				Console.WriteLine("x == y");
+			}
+			else
+			{
+				Console.WriteLine("x != y");
+			}
+
+			Point p2 = pTest + 5;
+			p2.Print();
 		}
 	}
 }

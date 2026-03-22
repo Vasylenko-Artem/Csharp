@@ -1,4 +1,4 @@
-﻿using University;
+﻿using Vector;
 
 namespace tasks
 {
@@ -6,23 +6,49 @@ namespace tasks
 	{
 		public static void Run()
 		{
-			Person[] people =
-			{
-			new Student("Ivan", 19, "CS-21"),
-			new Teacher("Petro", 45, "Math"),
-			new Student("Oksana", 20, "CS-22"),
-			new HeadOfDepartment("Andrii", 55, "Physics", "Physics Department"),
-			new Teacher("Olena", 39, "Programming")
-			};
+			VectorInt v1 = new VectorInt(5, 2);
+			VectorInt v2 = new VectorInt(5, 3);
 
-			Array.Sort(people, (a, b) => a.Age.CompareTo(b.Age));
+			Console.WriteLine("v1:");
+			v1.Print();
 
-			Console.WriteLine("Sorted by age:\n");
+			Console.WriteLine("v2:");
+			v2.Print();
 
-			foreach (Person p in people)
-			{
-				p.Show();
-			}
+			// Arithmetic
+			var v3 = v1 + v2;
+			Console.WriteLine("v1 + v2:");
+			v3.Print();
+
+			var v4 = v1 + 10;
+			Console.WriteLine("v1 + 10:");
+			v4.Print();
+
+			// Bitwise
+			var v5 = v1 | v2;
+			Console.WriteLine("v1 | v2:");
+			v5.Print();
+
+			// Unary
+			v1++;
+			Console.WriteLine("v1++:");
+			v1.Print();
+
+			// Indexer
+			Console.WriteLine($"v1[2] = {v1[2]}");
+			Console.WriteLine($"v1[100] = {v1[100]}  (error={v1.CodeError})");
+
+			// Comparison
+			Console.WriteLine($"v1 == v2: {v1 == v2}");
+			Console.WriteLine($"v1 > v2: {v1 > v2}");
+
+			// true / false
+			if (v1)
+				Console.WriteLine("v1 is TRUE");
+			else
+				Console.WriteLine("v1 is FALSE");
+
+			Console.WriteLine($"Vectors created: {VectorInt.CountVectors()}");
 		}
 	}
 }

@@ -16,6 +16,7 @@
 
 # Build output directories
 bin/
+obj/
 build/
 dist/
 output/
