@@ -1,15 +1,14 @@
 namespace Figures
 {
-	public abstract class Figure
+	public abstract class FigureBase : IFigure
 	{
-		public string Name { get; set; }
+		public string Name { get; protected set; }
 
-		public Figure(string name)
+		public FigureBase(string name)
 		{
 			Name = name;
 		}
 
-		// Абстрактні методи
 		public abstract double Area();
 		public abstract double Perimeter();
 
@@ -19,5 +18,12 @@ namespace Figures
 			Console.WriteLine($"Area: {Area():F2}");
 			Console.WriteLine($"Perimeter: {Perimeter():F2}");
 		}
+
+		public int CompareTo(IFigure other)
+		{
+			return this.Area().CompareTo(other.Area());
+		}
+
+		public abstract object Clone();
 	}
 }

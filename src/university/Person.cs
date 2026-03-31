@@ -1,34 +1,29 @@
 namespace University
 {
-	public class Person
+	public class Person : IShowable, IComparable<Person>, ICloneable
 	{
 		protected string name;
 		protected int age;
+
+		public string Name => name;
+		public int Age => age;
 
 		public Person()
 		{
 			name = "Unknown";
 			age = 0;
-			Console.WriteLine("Person: default constructor");
 		}
 
 		public Person(string name)
 		{
 			this.name = name;
 			age = 0;
-			Console.WriteLine("Person: constructor with name");
 		}
 
 		public Person(string name, int age)
 		{
 			this.name = name;
 			this.age = age;
-			Console.WriteLine("Person: constructor with name and age");
-		}
-
-		~Person()
-		{
-			Console.WriteLine("Person: destructor");
 		}
 
 		public virtual void Show()
@@ -36,9 +31,14 @@ namespace University
 			Console.WriteLine($"Name: {name}, Age: {age}");
 		}
 
-		public int Age
+		public int CompareTo(Person other)
 		{
-			get { return age; }
+			return this.age.CompareTo(other.age);
+		}
+
+		public object Clone()
+		{
+			return new Person(name, age);
 		}
 	}
 }
