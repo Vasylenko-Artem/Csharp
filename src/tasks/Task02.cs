@@ -1,4 +1,4 @@
-﻿using University;
+﻿using Figures;
 
 namespace tasks
 {
@@ -6,9 +6,19 @@ namespace tasks
 	{
 		public static void Run()
 		{
-			HeadOfDepartment head = new HeadOfDepartment("Ivan", 50, "Math", "CS");
+			IFigure[] figures =
+			{
+				new Rectangle(4, 5),
+				new Circle(3),
+				new Triangle(3, 4, 5)
+			};
 
-			head.Show();
+			Array.Sort(figures);
+
+			foreach (var fig in figures)
+			{
+				fig.Show();
+			}
 		}
 	}
 }

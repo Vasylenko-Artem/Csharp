@@ -1,6 +1,6 @@
 namespace University
 {
-	public class Student : Person
+	public class Student : Person, IUniversityMember
 	{
 		private string group;
 
@@ -13,6 +13,11 @@ namespace University
 		public override void Show()
 		{
 			Console.WriteLine($"Student: {name}, Age: {age}, Group: {group}");
+		}
+
+		public string GetRole()
+		{
+			return "Student";
 		}
 	}
 }

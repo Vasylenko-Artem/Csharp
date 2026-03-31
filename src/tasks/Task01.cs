@@ -15,13 +15,20 @@ namespace tasks
 			new Teacher("Olena", 39, "Programming")
 			};
 
-			Array.Sort(people, (a, b) => a.Age.CompareTo(b.Age));
+			Array.Sort(people);
 
 			Console.WriteLine("Sorted by age:\n");
 
 			foreach (Person p in people)
 			{
 				p.Show();
+
+				if (p is IUniversityMember member)
+				{
+					Console.WriteLine($"Role: {member.GetRole()}");
+				}
+
+				Console.WriteLine();
 			}
 		}
 	}
