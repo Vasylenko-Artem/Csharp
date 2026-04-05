@@ -1,0 +1,75 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MyApp.UI.MainWindow"
+        Width="800" Height="600"
+        Title="Lab">
+
+  <TabControl>
+
+    <!-- Calculator -->
+    <TabItem Header="Calculator">
+      <StackPanel Margin="20" Spacing="10">
+
+        <TextBox x:Name="Input1"/>
+        <TextBox x:Name="Input2"/>
+        <TextBox x:Name="Result" IsReadOnly="True"/>
+
+        <StackPanel Orientation="Vertical">
+          <RadioButton x:Name="Add" Content="+"/>
+          <RadioButton x:Name="Sub" Content="-"/>
+          <RadioButton x:Name="Mul" Content="*"/>
+          <RadioButton x:Name="Div" Content="/"/>
+        </StackPanel>
+
+        <Button Content="Calculate" Click="OnCalculate"/>
+
+      </StackPanel>
+    </TabItem>
+
+    <!-- Graph -->
+    <TabItem Header="Graph">
+      <StackPanel Margin="10" Spacing="10">
+
+        <!-- Canvas for graph -->
+        <Canvas x:Name="GraphCanvas" Height="250" Background="LightGray" ClipToBounds="True"/>
+
+        <!-- Settings -->
+        <StackPanel Orientation="Horizontal" Spacing="10">
+
+          <!-- Color -->
+          <StackPanel>
+            <TextBlock Text="Color"/>
+            <RadioButton x:Name="RedColor" Content="Red" IsChecked="True"/>
+            <RadioButton x:Name="BlueColor" Content="Blue"/>
+          </StackPanel>
+
+          <!-- Thickness -->
+          <StackPanel>
+            <TextBlock Text="Thickness"/>
+            <RadioButton x:Name="Thin" Content="Thin" IsChecked="True"/>
+            <RadioButton x:Name="Thick" Content="Thick"/>
+          </StackPanel>
+
+        </StackPanel>
+
+        <Button Content="Build graph" Click="StartGraph"/>
+
+      </StackPanel>
+    </TabItem>
+
+    <!-- Picture -->
+    <TabItem Header="Picture">
+    <StackPanel Margin="10" Spacing="10">
+
+      <Canvas x:Name="DrawCanvas" Width="400" Height="250" Background="LightGray" ClipToBounds="True"/>
+
+      <StackPanel Orientation="Horizontal" Spacing="10">
+        <Button Content="Create random shapes" Click="CreateShapes"/>
+        <Button Content="Move shapes" Click="MoveShapes"/>
+      </StackPanel>
+
+    </StackPanel>
+  </TabItem>
+
+  </TabControl>
+</Window>
