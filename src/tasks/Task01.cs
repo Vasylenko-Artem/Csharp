@@ -1,7 +1,6 @@
 ﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.IO;
 
 namespace tasks
 {
@@ -12,43 +11,30 @@ namespace tasks
 			string inputPath = "input.txt";
 			string outputPath = "output.txt";
 
-			string text = File.ReadAllText(inputPath);
+			Stack<int> stack = new Stack<int>();
 
-			// Regex for dates with range validation
-			string pattern = @"\b(0?[1-9]|[12][0-9]|3[01])\.(0?[1-9]|1[0-2])\.(19\d{2}|20\d{2})\b";
-
-			MatchCollection matches = Regex.Matches(text, pattern);
-
-			List<string> dates = new List<string>();
-
-			foreach (Match match in matches)
+			// 1. Read numbers from file and push to stack
+			using (StreamReader reader = new StreamReader(inputPath))
 			{
-				dates.Add(match.Value);
+				while (!reader.EndOfStream)
+				{
+					string line = reader.ReadLine();
+
+					if (int.TryParse(line, out int number))
+					{
+						stack.Push(number);
+					}
+				}
 			}
 
-			// Number of dates
-			Console.WriteLine($"Found dates: {dates.Count}");
-
-			// Write to file
-			File.WriteAllLines(outputPath, dates);
-
-			// Replace (example)
-			Console.WriteLine("Enter date to replace:");
-			string oldDate = Console.ReadLine();
-
-			Console.WriteLine("Enter new date:");
-			string newDate = Console.ReadLine();
-
-			text = text.Replace(oldDate, newDate);
-
-			// Delete (example)
-			Console.WriteLine("Enter date to delete:");
-			string deleteDate = Console.ReadLine();
-
-			text = text.Replace(deleteDate, "");
-
-			// Write modified text to new file
-			File.WriteAllText("modified.txt", text);
+			// 2. Pop elements from the stack (in reverse order)
+			using (StreamWriter writer = new StreamWriter(outputPath))
+			{
+				while (stack.Count > 0)
+				{
+					writer.WriteLine(stack.Pop());
+				}
+			}
 
 			Console.WriteLine("Done!");
 		}

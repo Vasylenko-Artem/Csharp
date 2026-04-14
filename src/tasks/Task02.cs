@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 
 namespace tasks
 {
@@ -8,28 +8,39 @@ namespace tasks
 	{
 		public static void Run()
 		{
-			string inputPath = "input.txt";
-			string outputPath = "result.txt";
+			string inputPath = "input2.txt";
 
-			string text = File.ReadAllText(inputPath);
+			Queue<char> nonDigits = new Queue<char>();
+			Queue<char> digits = new Queue<char>();
 
-			Console.WriteLine("Enter word to search:");
-			string word = Console.ReadLine();
+			// 1. One pass through the file
+			using (StreamReader reader = new StreamReader(inputPath))
+			{
+				while (!reader.EndOfStream)
+				{
+					int ch = reader.Read();
 
-			// Search for whole word, case-insensitive
-			string pattern = $@"\b{Regex.Escape(word)}\b";
+					if (ch == -1) break;
 
-			bool found = Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase);
+					char c = (char)ch;
 
-			string result = found
-				? $"Word \"{word}\" found in the text."
-				: $"Word \"{word}\" not found in the text.";
+					if (char.IsDigit(c))
+						digits.Enqueue(c);
+					else
+						nonDigits.Enqueue(c);
+				}
+			}
 
-			// Output result
-			Console.WriteLine(result);
+			// 2. Output
+			Console.WriteLine("Result:");
 
-			// Write to file
-			File.WriteAllText(outputPath, result);
+			while (nonDigits.Count > 0)
+				Console.Write(nonDigits.Dequeue());
+
+			while (digits.Count > 0)
+				Console.Write(digits.Dequeue());
+
+			Console.WriteLine();
 		}
 	}
 }

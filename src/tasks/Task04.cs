@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace tasks
 {
@@ -7,40 +6,26 @@ namespace tasks
 	{
 		public static void Run()
 		{
-			string path = "numbers.bin";
+			MusicCatalog catalog = new MusicCatalog();
 
-			int count = 10; // How many degrees to write
+			var disk1 = new MusicDisk("Rock Hits");
+			var disk2 = new MusicDisk("Pop Hits");
 
-			// Write to binary file
-			using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
-			{
-				for (int i = 0; i < count; i++)
-				{
-					int value = (int)Math.Pow(3, i);
-					writer.Write(value);
-				}
-			}
+			catalog.AddDisk(disk1);
+			catalog.AddDisk(disk2);
 
-			// Reading from file
-			using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open)))
-			{
-				int index = 0;
+			catalog.AddSong("Rock Hits", new Song("Numb", "Linkin Park"));
+			catalog.AddSong("Rock Hits", new Song("In The End", "Linkin Park"));
+			catalog.AddSong("Pop Hits", new Song("Thriller", "Michael Jackson"));
 
-				Console.WriteLine("Elements with even sequential numbers:");
+			catalog.PrintAll();
 
-				while (reader.BaseStream.Position < reader.BaseStream.Length)
-				{
-					int value = reader.ReadInt32();
+			Console.WriteLine("\nFind");
+			catalog.FindByArtist("Linkin Park");
 
-					// Even sequential numbers (2nd, 4th...) => index % 2 == 0
-					if (index % 2 == 0)
-					{
-						Console.WriteLine(value);
-					}
-
-					index++;
-				}
-			}
+			Console.WriteLine("\nDelete");
+			catalog.RemoveSong("Rock Hits", "Numb");
+			catalog.PrintDisk("Rock Hits");
 		}
 	}
 }
