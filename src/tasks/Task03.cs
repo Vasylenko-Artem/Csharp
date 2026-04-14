@@ -1,5 +1,7 @@
-﻿using Figures;
-using Figures.Exceptions;
+﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace tasks
 {
@@ -7,46 +9,47 @@ namespace tasks
 	{
 		public static void Run()
 		{
-			try
-			{
-				IFigure[] figures = new IFigure[3];
+			string inputPath = "input.txt";
+			string outputPath = "result.txt";
 
-				figures[0] = new Rectangle(4, 5);
-				figures[1] = new Circle(3);
+			string text = File.ReadAllText(inputPath);
 
-				// Error: Invalid triangle dimensions
-				figures[2] = new Triangle(1, 2, 10);
+			// Word with double letters (case-insensitive)
+			string pattern = @"\b\w*([a-zA-Zа-яА-ЯіїєІЇЄ])\1\w*\b";
 
-				// Error: Array type mismatch
-				object[] objArray = figures;
-				objArray[0] = "Not a figure";
+			MatchCollection matches = Regex.Matches(text, pattern);
 
-				foreach (var fig in figures)
-				{
-					fig.Show();
-				}
-			}
-			catch (InvalidTriangleException ex)
+			List<string> removedWords = new List<string>();
+
+			foreach (Match match in matches)
 			{
-				Console.WriteLine($"Triangle error: {ex.Message}");
+				removedWords.Add(match.Value);
 			}
-			catch (InvalidDimensionException ex)
+
+			// Remove these words from the text
+			string cleanedText = Regex.Replace(text, pattern, "").Trim();
+
+			// Remove extra spaces
+			cleanedText = Regex.Replace(cleanedText, @"\s+", " ");
+
+			// Form the line of removed words
+			string removedLine = string.Join(" ", removedWords);
+
+			// Output
+			Console.WriteLine("Removed words:");
+			Console.WriteLine(removedLine);
+
+			Console.WriteLine("\nText after removal:");
+			Console.WriteLine(cleanedText);
+
+			// Write to file
+			using (StreamWriter writer = new StreamWriter(outputPath))
 			{
-				Console.WriteLine($"Dimension error: {ex.Message}");
-			}
-			catch (ArrayTypeMismatchException ex)
-			{
-				Console.WriteLine("Array type mismatch error!");
-				Console.WriteLine(ex.Message);
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine("General error:");
-				Console.WriteLine(ex.Message);
-			}
-			finally
-			{
-				Console.WriteLine("\nProgram finished.");
+				writer.WriteLine("Removed words:");
+				writer.WriteLine(removedLine);
+				writer.WriteLine();
+				writer.WriteLine("Text after removal:");
+				writer.WriteLine(cleanedText);
 			}
 		}
 	}

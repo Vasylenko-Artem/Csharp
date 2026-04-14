@@ -1,4 +1,7 @@
-﻿using University;
+﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace tasks
 {
@@ -6,30 +9,48 @@ namespace tasks
 	{
 		public static void Run()
 		{
-			Person[] people =
+			string inputPath = "input.txt";
+			string outputPath = "output.txt";
+
+			string text = File.ReadAllText(inputPath);
+
+			// Regex for dates with range validation
+			string pattern = @"\b(0?[1-9]|[12][0-9]|3[01])\.(0?[1-9]|1[0-2])\.(19\d{2}|20\d{2})\b";
+
+			MatchCollection matches = Regex.Matches(text, pattern);
+
+			List<string> dates = new List<string>();
+
+			foreach (Match match in matches)
 			{
-			new Student("Ivan", 19, "CS-21"),
-			new Teacher("Petro", 45, "Math"),
-			new Student("Oksana", 20, "CS-22"),
-			new HeadOfDepartment("Andrii", 55, "Physics", "Physics Department"),
-			new Teacher("Olena", 39, "Programming")
-			};
-
-			Array.Sort(people);
-
-			Console.WriteLine("Sorted by age:\n");
-
-			foreach (Person p in people)
-			{
-				p.Show();
-
-				if (p is IUniversityMember member)
-				{
-					Console.WriteLine($"Role: {member.GetRole()}");
-				}
-
-				Console.WriteLine();
+				dates.Add(match.Value);
 			}
+
+			// Number of dates
+			Console.WriteLine($"Found dates: {dates.Count}");
+
+			// Write to file
+			File.WriteAllLines(outputPath, dates);
+
+			// Replace (example)
+			Console.WriteLine("Enter date to replace:");
+			string oldDate = Console.ReadLine();
+
+			Console.WriteLine("Enter new date:");
+			string newDate = Console.ReadLine();
+
+			text = text.Replace(oldDate, newDate);
+
+			// Delete (example)
+			Console.WriteLine("Enter date to delete:");
+			string deleteDate = Console.ReadLine();
+
+			text = text.Replace(deleteDate, "");
+
+			// Write modified text to new file
+			File.WriteAllText("modified.txt", text);
+
+			Console.WriteLine("Done!");
 		}
 	}
 }

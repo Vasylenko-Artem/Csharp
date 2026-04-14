@@ -1,4 +1,5 @@
-﻿using Figures;
+﻿using System;
+using System.IO;
 
 namespace tasks
 {
@@ -6,15 +7,39 @@ namespace tasks
 	{
 		public static void Run()
 		{
-			FigureCollection collection = new FigureCollection();
+			string path = "numbers.bin";
 
-			collection.Add(new Rectangle(4, 5));
-			collection.Add(new Circle(3));
-			collection.Add(new Triangle(3, 4, 5));
+			int count = 10; // How many degrees to write
 
-			foreach (var fig in collection)
+			// Write to binary file
+			using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
 			{
-				fig.Show();
+				for (int i = 0; i < count; i++)
+				{
+					int value = (int)Math.Pow(3, i);
+					writer.Write(value);
+				}
+			}
+
+			// Reading from file
+			using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open)))
+			{
+				int index = 0;
+
+				Console.WriteLine("Elements with even sequential numbers:");
+
+				while (reader.BaseStream.Position < reader.BaseStream.Length)
+				{
+					int value = reader.ReadInt32();
+
+					// Even sequential numbers (2nd, 4th...) => index % 2 == 0
+					if (index % 2 == 0)
+					{
+						Console.WriteLine(value);
+					}
+
+					index++;
+				}
 			}
 		}
 	}

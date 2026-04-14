@@ -1,4 +1,6 @@
-﻿using Figures;
+﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace tasks
 {
@@ -6,19 +8,28 @@ namespace tasks
 	{
 		public static void Run()
 		{
-			IFigure[] figures =
-			{
-				new Rectangle(4, 5),
-				new Circle(3),
-				new Triangle(3, 4, 5)
-			};
+			string inputPath = "input.txt";
+			string outputPath = "result.txt";
 
-			Array.Sort(figures);
+			string text = File.ReadAllText(inputPath);
 
-			foreach (var fig in figures)
-			{
-				fig.Show();
-			}
+			Console.WriteLine("Enter word to search:");
+			string word = Console.ReadLine();
+
+			// Search for whole word, case-insensitive
+			string pattern = $@"\b{Regex.Escape(word)}\b";
+
+			bool found = Regex.IsMatch(text, pattern, RegexOptions.IgnoreCase);
+
+			string result = found
+				? $"Word \"{word}\" found in the text."
+				: $"Word \"{word}\" not found in the text.";
+
+			// Output result
+			Console.WriteLine(result);
+
+			// Write to file
+			File.WriteAllText(outputPath, result);
 		}
 	}
 }
