@@ -4,38 +4,33 @@ class Program
 {
 	static void Main()
 	{
-		while (true)
-		{
-			Console.WriteLine("Choose a task to run (1-6) or 0 to exit:");
-			Console.WriteLine("1 — Task01");
-			Console.WriteLine("2 — Task02");
-			Console.WriteLine("3 — Task03");
-			Console.WriteLine("4 — Task04");
-			Console.Write("Your choice: ");
+		// while (true)
+		// {
+		// Console.WriteLine("Choose a task to run (1-6) or 0 to exit:");
+		// Console.WriteLine("1 — Task01");
+		// Console.Write("Your choice: ");
 
-			string input = Console.ReadLine();
-			if (!int.TryParse(input, out int choice))
-			{
-				Console.WriteLine("Invalid number. Try again.\n");
-				continue;
-			}
+		// string input = Console.ReadLine();
+		// if (!int.TryParse(input, out int choice))
+		// {
+		// 	Console.WriteLine("Invalid number. Try again.\n");
+		// 	continue;
+		// }
 
-			if (choice == 0) break;
+		// if (choice == 0) break;
 
-			Console.Clear();
+		// Console.Clear();
 
-			switch (choice)
-			{
-				case 1: Task01.Run(); break;
-				case 2: Task02.Run(); break;
-				case 3: Task03.Run(); break;
-				case 4: Task04.Run(); break;
-				default:
-					Console.WriteLine("Wrong choice. Try again.\n");
-					break;
-			}
-			Console.ReadLine();
-			Console.Clear();
-		}
+		// switch (choice)
+		// {
+		// 	case 1: Task01.Run(); break;
+		// 	default:
+		// 		Console.WriteLine("Wrong choice. Try again.\n");
+		// 		break;
+		// }
+		// Console.ReadLine();
+		// Console.Clear();
+		Task01.Run();
+		// }
 	}
 }
